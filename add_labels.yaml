@@ -1,0 +1,26 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-labels
+  annotations:
+    policies.kyverno.io/title: Add Labels
+    policies.kyverno.io/category: Sample
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Label
+    policies.kyverno.io/description: >-
+            Simple mutation which adds a label `domain=ng` to different resource kinds.
+spec:
+    rules:
+    - name: add-labels
+      match:
+        resources:
+          kinds:
+          - Pod
+          - Service
+          - ConfigMap
+          - Secret
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            labels:
+              domain: ng
