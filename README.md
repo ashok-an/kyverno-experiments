@@ -1,6 +1,8 @@
 1. Install:
 `$ kubectl create -f https://raw.githubusercontent.com/kyverno/kyverno/main/definitions/release/install.yaml`
 
+---
+
 2. Apply policies:
 ```
 # Mutation: add a label domain=ng to resources
@@ -31,6 +33,9 @@ disallow-latest-tag         true         audit
 require-run-as-non-root     true         audit
 
 ```
+
+---
+
 3. Test
 ```
 ❯ k get clusterpolicy | grep enforce
